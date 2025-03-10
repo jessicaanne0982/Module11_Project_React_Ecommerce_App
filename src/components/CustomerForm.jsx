@@ -115,7 +115,7 @@ const CustomerForm = () => {
                 </Form.Group>
 
                 <Button className='d-grid gap-2 col-3 mx-auto mb-2' variant='info' type='submit' disabled={isSubmitting}>
-                    {isSubmitting ? <Spinner as="span" animation='border' size='sm' /> : 'Submit'}
+                    {isSubmitting ? <Spinner as="span" animation='grow' size='sm' variant='info'/> : 'Submit'}
                 </Button>
             </Form>
 

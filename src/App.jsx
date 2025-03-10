@@ -5,6 +5,8 @@ import CustomerForm from './components/CustomerForm';
 import CustomerDetails from './components/CustomerDetails';
 import ProductList from './components/ProductList';
 import ProductForm from './components/ProductForm';
+import OrderList from './components/OrderList';
+import OrderForm from './components/OrderForm';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './components/styles.css';
 
@@ -21,6 +23,8 @@ function App() {
           <Route path='/add-product' element={<ProductForm />} />
           <Route path='/edit-product/:id' element={<ProductForm />} />   
           <Route path='/products' element={<ProductList />} /> 
+          <Route path='/add-order' element={<OrderForm />} />
+          <Route path='/orders' element={<OrderList />} />
         </Routes>
     </div>
   );

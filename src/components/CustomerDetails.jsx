@@ -1,11 +1,12 @@
 import { array, func } from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Container, ListGroup, Row, Col } from 'react-bootstrap';
+import { Button, Container, Table, Modal } from 'react-bootstrap';
 import axios from 'axios';
 
 const CustomerDetails = () => {
     const [customers, setCustomers] = useState([]);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
     const navigate = useNavigate();
 
     const fetchCustomers = async () => {
@@ -21,6 +22,7 @@ const CustomerDetails = () => {
         try {
             await axios.delete(`http://127.0.0.1:5000/customers/${id}`);
             fetchCustomers();
+            setShowSuccessModal(true);
         } catch (error) {
             console.error('Error deleting customer:', error);
         }
@@ -30,25 +32,56 @@ const CustomerDetails = () => {
         fetchCustomers();
     }, []);
 
+    const handleClose = () => {
+        setShowSuccessModal(false);
+        navigate('/customers');
+    };
+
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <h2 className='mt-3 mb-3 text-center'>Customers</h2>
-                    <ListGroup>
+        <>
+            <Container>
+                <h2 className='mt-3 mb-3 text-center'>Customers</h2>
+                <Table bordered hover responsive>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {customers.map(customer => (
-                            <ListGroup.Item key={customer.id} className='d-flex justify-content-between align-items-center shadow-sm p-3 mb-3 bg-white rounded'>
-                                {customer.name}
-                                <div>
-                                    <Button variant='info' onClick={() => navigate(`/edit-customer/${customer.id}`)} className='me-2'>Edit</Button>
-                                    <Button variant='danger' onClick={() => deleteCustomer(customer.id)}>Delete</Button>
-                                </div>
-                            </ListGroup.Item>
+                            <tr key={customer.id}>
+                                <td>{customer.name}</td>
+                                <td>{customer.email}</td>
+                                <td>{customer.phone}</td>
+                                <td className="d-flex justify-content-center align-items-center">
+                                    <Button variant="info" onClick={() => navigate(`/edit-customer/${customer.id}`)} className="gap-5 col-3 mx-auto mb-2">
+                                        Edit
+                                    </Button>
+                                    <Button variant="danger" onClick={() => deleteCustomer(customer.id)} className="mx-auto gap-5 col-3 mx-auto mb-2">
+                                        Delete
+                                    </Button>
+                                </td>
+                            </tr>
                         ))}
-                    </ListGroup>
-                </Col>
-            </Row>
-        </Container>
+                    </tbody>
+                </Table>
+            </Container>
+
+            <Modal show={showSuccessModal} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Success</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Customer has been successfully deleted!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant='secondary' onClick={handleClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>   
     );
 };
 

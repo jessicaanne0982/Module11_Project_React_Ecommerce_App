@@ -5,7 +5,7 @@ import { Form, Button, Alert, Modal, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 
 const ProductForm = () => {
-    const [product, setProduct ] = useState({ name: '', price: '' });
+    const [product, setProduct ] = useState({ name: '', price: '', quantity: '' });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setSubmitting] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -17,6 +17,7 @@ const ProductForm = () => {
         if (id) {
             axios.get(`http://127.0.0.1:5000/products/${id}`)
                 .then(response => {
+                    console.log(response.data);
                     setProduct(response.data);
                 })
                 .catch(error => setErrorMessage(error.message));
@@ -27,6 +28,7 @@ const ProductForm = () => {
         let errors = {};
         if (!product.name) errors.name = 'Product name is required';
         if (!product.price || product.price <= 0) errors.price = 'Price must be a positive number';
+        if (!product.quantity || product.quantity <0) errors.quantity = 'Quantity must be a positive number';
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
@@ -59,7 +61,7 @@ const ProductForm = () => {
 
     const handleClose = () => {
         setShowSuccessModal(false);
-        setProduct({ name: '', price: ''});
+        setProduct({ name: '', price: '', quantity: ''});
         setSubmitting(false);
         navigate('/products');
     };
@@ -99,8 +101,22 @@ const ProductForm = () => {
                     </Form.Control.Feedback>
                 </Form.Group>
 
+                <Form.Group className='p-2 mb-2 bg-white rounded' controlId='productPrice'>
+                    <Form.Label>Quantity:</Form.Label>
+                    <Form.Control
+                        type='text'
+                        name='quantity'
+                        value={product.quantity}
+                        onChange={handleChange}
+                        isInvalid={!!errors.quantity}
+                    />
+                    <Form.Control.Feedback type='invalid'>
+                        {errors.quantity}
+                    </Form.Control.Feedback>
+                </Form.Group>
+
                 <Button className='d-grid gap-2 col-3 mx-auto mb-2' variant='info' type='submit' disabled={isSubmitting}>
-                    {isSubmitting ? <Spinner as="span" animation='border' size='sm' /> : 'Submit'}
+                    {isSubmitting ? <Spinner as="span" animation='grow' size='sm' variant='info'/> : 'Submit'}
                 </Button>
             </Form>
 
