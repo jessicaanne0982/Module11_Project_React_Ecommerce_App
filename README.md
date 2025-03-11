@@ -33,7 +33,7 @@ You must have [Module 6 Project E-Commerce API](https://github.com/jessicaanne09
 ## Usage
 
 ![Screenshot of the Home Page](src/assets/home-page.png)
-The Home Page greets the user
+The Home Page greets the user with a simple, clean look.
 
 ![Screenshot of Customer Page](src/assets/customer-page.png)
 The Customer page offers the user a view of all the customers' names as well as their email and phone and allows the user to either 'Edit' or 'Delete' the customer.  
