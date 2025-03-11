@@ -9,6 +9,7 @@ import OrderList from './components/OrderList';
 import OrderForm from './components/OrderForm';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './components/styles.css';
+import NotFound from './components/NotFound';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path='/products' element={<ProductList />} /> 
           <Route path='/add-order' element={<OrderForm />} />
           <Route path='/orders' element={<OrderList />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
     </div>
   );

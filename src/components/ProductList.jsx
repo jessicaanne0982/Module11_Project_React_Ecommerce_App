@@ -47,7 +47,6 @@ const ProductList = () => {
                             <th>Product ID</th>
                             <th>Name</th>
                             <th>Price</th>
-                            <th>Quantity</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -57,7 +56,6 @@ const ProductList = () => {
                                 <td>{product.id}</td>
                                 <td>{product.name}</td>
                                 <td>{product.price}</td>
-                                <td>{product.quantity}</td>
                                 <td className="d-flex justify-content-center align-items-center">
                                     <Button variant="info" onClick={() => navigate(`/edit-product/${product.id}`)} className="gap-5 col-3 mx-auto mb-2">
                                         Edit

@@ -40,7 +40,7 @@ const OrderList = () => {
                                 <td>
                                     {order.products.map((product, index) => (
                                         <div key={index}>
-                                            {product.product_name} (Quantity: {product.quantity})
+                                            {product.product_name} 
                                         </div>
                                 ))}</td>
                             </tr>

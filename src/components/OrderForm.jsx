@@ -46,20 +46,11 @@ const OrderForm = () => {
                 products: formattedProducts 
             };
 
-            console.log("Sending Order data:", orderData) // DELETE AFTER DEBUGGING
-
             await axios.post('http://127.0.0.1:5000/orders', orderData);
             setShowSuccessModal(true);
         
         } catch (error) {
             setErrorMessage(error.message);
-            if (error.response) {
-                console.error('Error Response:', error.response);  // backend (status, data)  DELETE THESE WHEN WORKING!!!
-            } else if (error.request) {
-                console.error('Error Request:', error.request);  // THIS IS THE ERROR I'M RECEIVING
-            } else {
-                console.error('General Error:', error.message);  
-            }
         } finally {
             setSubmitting(false);
         }

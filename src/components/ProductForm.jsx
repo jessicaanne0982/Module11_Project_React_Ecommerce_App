@@ -102,7 +102,7 @@ const ProductForm = () => {
                 </Form.Group>
 
                 <Form.Group className='p-2 mb-2 bg-white rounded' controlId='productPrice'>
-                    <Form.Label>Quantity:</Form.Label>
+                    <Form.Label>Inventory Quantity:</Form.Label>
                     <Form.Control
                         type='text'
                         name='quantity'

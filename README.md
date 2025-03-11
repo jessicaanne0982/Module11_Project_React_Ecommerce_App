@@ -46,7 +46,10 @@ The Add Customer link allows to user to easily add a new customer to the databas
 
 The links for Products and Add Product work the same as the aforementioned Customer and Add Customer pages.
 
-![Screenshot of Order Page](src/assets/order-page.png) Flesh this out... what does the Order page do???
+![Screenshot of Order Page](src/assets/order-page.png) 
+The Order form allows the user to select one customer from a drop down select box.  Below, there is another select box displaying the products available.  The user can select as many product as he or she would like.  Pressing submit pushes the order to the database and will display within the table on the Orders List page.
+
+
 ## GitHub Link
 
 [Module 6 Project - GitHub Link](https://github.com/jessicaanne0982/Module6_MiniProject_ECommerce_API)
